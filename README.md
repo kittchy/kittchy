@@ -60,16 +60,6 @@
 - 株式会社MIXI (新卒入社)
   - 2024年~ 機械学習エンジニア　@みてね
 
-# 📰 Publication
-- 2021 WiNF 中部地区大会
-- 2022 ICAICTA
-- 2023 音学シンポジウム
-- 2023 音響学会 Fusic
-- 2023 音響学会 北岡Lab
-- 2023 ICAICTA
-- 2024 春の音響学会
-- 2024 SPISIP（沖縄）
-
 ## 🥇 Award
 - [2024年　春季音響学会　優秀発表賞](https://acoustics.jp/awards/student/)
 - [愛知県大学対抗ハッカソン Hack Aichi 2024 優秀賞](https://jellyware.jp/hackaichi/)
