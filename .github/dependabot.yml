@@ -1,0 +1,26 @@
+# kittchy/infrastructure の Terraform が管理している。直接編集しても次の apply で戻る
+# 週 1 回、エコシステムごとに patch / minor を 1 本の PR にまとめる。major は個別の PR になり、手で見てからマージする
+# 公開直後の版（乗っ取られた版を含む）を避けるため、公開から 7 日たった版だけを提案させる
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directories:
+      - "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Asia/Tokyo
+    cooldown:
+      default-days: 7
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: chore
+    groups:
+      github-actions-minor-patch:
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # dependabot-auto-merge.yml も kittchy/infrastructure が管理しているので、版はそちらで上げる
+      - dependency-name: dependabot/fetch-metadata
