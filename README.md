@@ -14,6 +14,10 @@ I play the drums, and I like walking around cities I don't know.
 [![Wantedly](https://img.shields.io/badge/Wantedly-237C85?style=flat-square)](https://www.wantedly.com/id/takahiro_kinouchi)
 [![Instagram](https://img.shields.io/badge/Instagram-237C85?style=flat-square)](https://www.instagram.com/taka_hiro_drums/)
 
+## Now Playing
+
+[![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&cover_image=false&theme=default&show_offline=true&background_color=121212&interchange=true&profanity=false&hide_remaster=false&bar_color=53b14f&bar_color_cover=true)](https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&redirect=true)
+
 ## Skills
 
 ### Languages
