@@ -3,7 +3,7 @@
 kittchy-blog のデザインシステム（old wood / grayish white / turquoise、Archivo）に合わせて、
 ヘッダー・Skills・Career の SVG をライト用とダーク用の2枚ずつ、リンクボタンの SVG を1枚ずつ
 assets/ に書き出す。
-カードは横幅を狭め（ヘッダー 452px、Skills / Career 376px）、README では横に並べる。
+カードは横幅を狭め（ヘッダー 400px、Skills / Career 376px）、README では横に並べる。
 画面が狭いと自然に縦に積まれるので、スマホでも縮小されずに読める。
 文字はアウトライン（path）にして埋め込むので、表示側にフォントが無くても崩れない。
 動きは SVG 内の CSS アニメーションで付け、prefers-reduced-motion では止める。
@@ -103,7 +103,7 @@ MOTION = (
     "@keyframes beat{0%,100%{transform:scaleY(.3)}25%{transform:scaleY(1)}50%{transform:scaleY(.55)}}"
     ".pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite}"
     "@keyframes pulse{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(2.6)}}"
-    ".draw{stroke-dasharray:400;stroke-dashoffset:400;animation:draw 1.4s ease-out .2s forwards}"
+    ".draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.4s ease-out .2s forwards}"
     "@keyframes draw{to{stroke-dashoffset:0}}"
     "@media (prefers-reduced-motion:reduce){.in,.beat,.pulse,.draw{animation:none}"
     ".draw{stroke-dashoffset:0}}"
@@ -199,21 +199,21 @@ def beat_bars(x, y, t) -> str:
 
 
 def header(t) -> str:
-    w, pad = 452, 36
+    w, pad = 400, 32
     body = group(label(pad, pad + 16, "AI / ML ENGINEER · TOKYO", t), 0)
     body += beat_bars(w - pad - 41, pad + 18, t)
-    name = text(pad, pad + 76, "Takahiro Kinouchi", 46, 700, t["text"], tracking=-0.03)
+    name = text(pad, pad + 70, "Takahiro Kinouchi", 40, 700, t["text"], tracking=-0.03)
     body += group(name, 0.1)
-    y = pad + 120
+    y = pad + 108
     for i, para in enumerate(INTRO):
         lines = ""
-        for line in wrap(para, 17, w - pad * 2):
-            lines += text(pad, y, line, 17, 400, t["secondary"])
-            y += 29
+        for line in wrap(para, 16, w - pad * 2):
+            lines += text(pad, y, line, 16, 400, t["secondary"])
+            y += 27
         body += group(lines, 0.25 + i * 0.15)
         if i < len(INTRO) - 1:
             y += 9
-    return svg(w, int(y - 29 + pad + 6), body, t)
+    return svg(w, int(y - 27 + pad + 6), body, t)
 
 
 def link_button(name: str) -> str:
@@ -272,7 +272,7 @@ def career(t) -> str:
     line_x = pad + 6
     tx = pad + 28
     body += (
-        f'<line class="draw" x1="{line_x}" y1="{y0 + 14}" x2="{line_x}" '
+        f'<line class="draw" pathLength="1" x1="{line_x}" y1="{y0 + 14}" x2="{line_x}" '
         f'y2="{y0 + step * (len(CAREER) - 1) + 14}" stroke="{t["rule"]}" stroke-width="1.5"/>'
     )
     for i, (period, org, role, current) in enumerate(CAREER):
