@@ -1,0 +1,31 @@
+# kittchy/infrastructure の Terraform が管理している。直接編集しても次の apply で戻る
+# Dependabot の patch / minor 更新は auto-merge を有効にする。必須チェックがあれば通った時点で、なければすぐにマージされる
+# major は破壊的変更が入りうるので対象外にして、手で見てからマージする
+name: Dependabot auto-merge
+
+on: pull_request
+
+# Dependabot が起こしたワークフローのトークンは既定で読み取り専用なので、ここで書き込みを付ける
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dependabot のメタデータを取得
+        id: metadata
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: patch / minor の auto-merge を有効にする
+        if: |
+          steps.metadata.outputs.update-type == 'version-update:semver-patch' ||
+          steps.metadata.outputs.update-type == 'version-update:semver-minor'
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr merge --auto --squash "$PR_URL"
