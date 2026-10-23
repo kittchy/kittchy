@@ -198,13 +198,21 @@ def beat_bars(x, y, t) -> str:
     return out
 
 
-def header(t) -> str:
-    w, pad = 400, 32
+def header(t, w: int = 400) -> str:
+    pad = 32
     body = group(label(pad, pad + 16, "AI / ML ENGINEER · TOKYO", t), 0)
     body += beat_bars(w - pad - 41, pad + 18, t)
-    name = text(pad, pad + 70, "Takahiro Kinouchi", 40, 700, t["text"], tracking=-0.03)
+    name = text(
+        pad,
+        pad + (70 if w < 500 else 80),
+        "Takahiro Kinouchi",
+        40 if w < 500 else 52,
+        700,
+        t["text"],
+        tracking=-0.03,
+    )
     body += group(name, 0.1)
-    y = pad + 108
+    y = pad + (108 if w < 500 else 122)
     for i, para in enumerate(INTRO):
         lines = ""
         for line in wrap(para, 16, w - pad * 2):
@@ -236,8 +244,8 @@ def link_button(name: str) -> str:
     return svg(w, h, group(body, 0.4), None)
 
 
-def skills(t) -> str:
-    w, pad = 376, 32
+def skills(t, w: int = 376) -> str:
+    pad = 32
     body = group(label(pad, pad + 16, "SKILLS", t), 0)
     y = pad + 48
     n = 0
@@ -264,8 +272,8 @@ def skills(t) -> str:
     return svg(w, int(y - 30 + pad - 4), body, t)
 
 
-def career(t) -> str:
-    w, pad = 376, 32
+def career(t, w: int = 376) -> str:
+    pad = 32
     body = group(label(pad, pad + 16, "CAREER", t), 0)
     y0 = pad + 56
     step = 76
