@@ -16,7 +16,7 @@ I play the drums, and I like walking around cities I don't know.
 
 ## Now Playing
 
-[![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&cover_image=false&theme=default&show_offline=true&background_color=121212&interchange=true&profanity=false&hide_remaster=false&bar_color=53b14f&bar_color_cover=true)](https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&redirect=true)
+[![spotify-github-profile](https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&cover_image=false&theme=default&show_offline=true&background_color=2F2F28&interchange=true&profanity=false&hide_remaster=false&bar_color=4FC3CD&bar_color_cover=false)](https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&redirect=true)
 
 ## Skills
 
