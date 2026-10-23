@@ -26,11 +26,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/skills-dark.svg" />
-    <img align="top" width="376" alt="Skills — Languages: Python, Rust, C#, TypeScript, C, Java, Ruby. Frameworks: PyTorch, ONNX, OpenVINO, LiteRT (TFLite), FastAPI, gRPC, Ruby on Rails. Infra and Tools: AWS, GCP, Terraform, Kubernetes, Docker, Helm, ArgoCD." src="assets/skills-light.svg" />
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/career-dark.svg" />
-    <img align="top" width="376" alt="Career — 2026 to now: AI Engineer at Knowledge Work. 2024 to 2026: ML Engineer at MIXI. 2022 to 2025: ML Engineer (side job) at Poetics. 2022 to 2024: M.Eng. at Toyohashi University of Technology. Certifications: CKAD, AWS Certified Machine Learning Engineer – Associate." src="assets/career-light.svg" />
+    <source media="(prefers-color-scheme: dark) and (min-width: 768px)" srcset="assets/cards-wide-dark.svg" />
+    <source media="(min-width: 768px)" srcset="assets/cards-wide-light.svg" />
+    <source media="(prefers-color-scheme: dark)" srcset="assets/cards-stack-dark.svg" />
+    <img width="756" alt="Skills — Languages: Python, Rust, C#, TypeScript, C, Java, Ruby. Frameworks: PyTorch, ONNX, OpenVINO, LiteRT (TFLite), FastAPI, gRPC, Ruby on Rails. Infra and Tools: AWS, GCP, Terraform, Kubernetes, Docker, Helm, ArgoCD. Career — 2026 to now: AI Engineer at Knowledge Work. 2024 to 2026: ML Engineer at MIXI. 2022 to 2025: ML Engineer (side job) at Poetics. 2022 to 2024: M.Eng. at Toyohashi University of Technology. Certifications: CKAD, AWS Certified Machine Learning Engineer – Associate." src="assets/cards-stack-light.svg" />
   </picture>
 </p>
