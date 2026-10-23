@@ -4,6 +4,7 @@ kittchy-blog のデザインシステム（old wood / grayish white / turquoise�
 ヘッダー・Skills・Career の SVG をライト用とダーク用の2枚ずつ、リンクボタンの SVG を1枚ずつ
 assets/ に書き出す。
 カードは横幅を狭め（ヘッダー 400px、Skills / Career 376px）、README では横に並べる。
+PC 向けには Skills と Career を並べた幅と同じ 756px のヘッダー（header-wide-*.svg）も書き出す。
 画面が狭いと自然に縦に積まれるので、スマホでも縮小されずに読める。
 文字はアウトライン（path）にして埋め込むので、表示側にフォントが無くても崩れない。
 動きは SVG 内の CSS アニメーションで付け、prefers-reduced-motion では止める。
@@ -322,6 +323,7 @@ def main() -> None:
     for name, t in THEMES.items():
         for part, build in (("header", header), ("skills", skills), ("career", career)):
             (OUT / f"{part}-{name}.svg").write_text(build(t), encoding="utf-8")
+        (OUT / f"header-wide-{name}.svg").write_text(header(t, 756), encoding="utf-8")
     for name in LINKS:
         (OUT / f"link-{name.lower()}.svg").write_text(
             link_button(name), encoding="utf-8"
