@@ -1,15 +1,17 @@
 <p align="center">
   <picture>
+    <source media="(prefers-color-scheme: dark) and (min-width: 768px)" srcset="assets/header-wide-dark.svg" />
+    <source media="(min-width: 768px)" srcset="assets/header-wide-light.svg" />
     <source media="(prefers-color-scheme: dark)" srcset="assets/header-dark.svg" />
-    <img align="top" width="400" alt="Takahiro Kinouchi — AI / ML Engineer, Tokyo. Hi, I'm Takahiro Kinouchi (@kittchy). I work as an AI/ML engineer. At university I researched speech recognition. Since then I've built natural language processing, image processing, recommendation, and image search systems. I play the drums, and I like walking around cities I don't know." src="assets/header-light.svg" />
+    <img width="756" alt="Takahiro Kinouchi — AI / ML Engineer, Tokyo. Hi, I'm Takahiro Kinouchi (@kittchy). I work as an AI/ML engineer. At university I researched speech recognition. Since then I've built natural language processing, image processing, recommendation, and image search systems. I play the drums, and I like walking around cities I don't know." src="assets/header-light.svg" />
   </picture>
 </p>
 
 <p align="center">
   <a href="https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&redirect=true">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&theme=spotify-embed&cover_image=true&show_offline=false&border_radius=18&mode=dark" />
-      <img width="400" alt="Now playing on Spotify" src="https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&theme=spotify-embed&cover_image=true&show_offline=false&border_radius=18&mode=light" />
+      <source media="(prefers-color-scheme: dark)" srcset="https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&theme=spotify-embed&cover_image=true&show_offline=false&border_radius=11&mode=dark" />
+      <img width="756" alt="Now playing on Spotify" src="https://spotify-github-profile.kittinanx.com/api/view?uid=u1yq4j794rlp4b9q6je077ls5&theme=spotify-embed&cover_image=true&show_offline=false&border_radius=11&mode=light" />
     </picture>
   </a>
 </p>
