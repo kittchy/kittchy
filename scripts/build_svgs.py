@@ -3,9 +3,10 @@
 kittchy-blog のデザインシステム（old wood / grayish white / turquoise、Archivo）に合わせて、
 ヘッダー・Skills・Career の SVG をライト用とダーク用の2枚ずつ、リンクボタンの SVG を1枚ずつ
 assets/ に書き出す。
-カードは横幅を狭め（ヘッダー 400px、Skills / Career 376px）、README では横に並べる。
-PC 向けには Skills と Career を並べた幅と同じ 756px のヘッダー（header-wide-*.svg）も書き出す。
-画面が狭いと自然に縦に積まれるので、スマホでも縮小されずに読める。
+README では画面の幅で画像を差し替える（<picture> の media）。
+- PC 向け: 756px のヘッダー（header-wide-*.svg）と、Skills / Career を横に並べた 756px の 1 枚（cards-wide-*.svg）
+- 1 列になる幅向け: 420px のヘッダー（header-*.svg）と、Skills / Career を縦に積んだ 420px の 1 枚
+  （cards-stack-*.svg）。README 側で欄の幅いっぱいに広げる
 文字はアウトライン（path）にして埋め込むので、表示側にフォントが無くても崩れない。
 動きは SVG 内の CSS アニメーションで付け、prefers-reduced-motion では止める。
 
@@ -15,6 +16,7 @@ PC 向けには Skills と Career を並べた幅と同じ 756px のヘッダー
 woff2 は npm の @fontsource/archivo に入っている archivo-latin-{400,600,700}-normal.woff2 を使う。
 """
 
+import re
 import sys
 from pathlib import Path
 
@@ -311,6 +313,34 @@ def career(t, w: int = 376) -> str:
     return svg(w, int(y + 44 + 26 * (len(CERTS) - 1) + pad - 4), body, t)
 
 
+def place(card: str, x: float, y: float) -> str:
+    """svg() が返したカードを、外側の SVG の (x, y) に置く入れ子の <svg> にする。"""
+    return card.replace(
+        '<svg xmlns="http://www.w3.org/2000/svg" ', f'<svg x="{x}" y="{y}" ', 1
+    )
+
+
+def height_of(card: str) -> int:
+    return int(re.search(r'height="(\d+)"', card).group(1))
+
+
+def cards(t, layout: str) -> str:
+    """Skills と Career を 1 枚にまとめる。layout は "wide"（横並び）か "stack"（縦積み）。"""
+    gap = 12
+    if layout == "wide":
+        a, b = skills(t, 372), career(t, 372)
+        w, h = 756, max(height_of(a), height_of(b))
+        body = place(a, 0, 0) + place(b, 372 + gap, 0)
+    else:
+        a, b = skills(t, 420), career(t, 420)
+        w, h = 420, height_of(a) + gap + height_of(b)
+        body = place(a, 0, 0) + place(b, 0, height_of(a) + gap)
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
+        f'viewBox="0 0 {w} {h}">{body}</svg>'
+    )
+
+
 def main() -> None:
     if len(sys.argv) != 2:
         sys.exit(
@@ -321,9 +351,14 @@ def main() -> None:
         FONTS[weight] = Font(font_dir / f"archivo-latin-{weight}-normal.woff2")
     OUT.mkdir(exist_ok=True)
     for name, t in THEMES.items():
-        for part, build in (("header", header), ("skills", skills), ("career", career)):
-            (OUT / f"{part}-{name}.svg").write_text(build(t), encoding="utf-8")
-        (OUT / f"header-wide-{name}.svg").write_text(header(t, 756), encoding="utf-8")
+        files = {
+            f"header-{name}.svg": header(t, 420),
+            f"header-wide-{name}.svg": header(t, 756),
+            f"cards-wide-{name}.svg": cards(t, "wide"),
+            f"cards-stack-{name}.svg": cards(t, "stack"),
+        }
+        for filename, content in files.items():
+            (OUT / filename).write_text(content, encoding="utf-8")
     for name in LINKS:
         (OUT / f"link-{name.lower()}.svg").write_text(
             link_button(name), encoding="utf-8"
